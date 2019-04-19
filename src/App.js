@@ -33,6 +33,7 @@ class App extends Component {
         country: response.sys.country,
         humidity: response.main.humidity + "%",
         description: response.weather[0].description,
+        icon: response.weather[0].icon,
         error: ""
       })
     } else {
@@ -45,16 +46,28 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Titles />
-        <Form getWeather={this.getWeather} />
-        <Weather
-          temperature={this.state.temperature}
-          city={this.state.city}
-          country={this.state.country}
-          humidity={this.state.humidity}
-          description={this.state.description}
-          error={this.state.error} />
+      <div className="wrapper">
+        <div className="main">
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-5 title-container">
+                <Titles />
+              </div>
+              <div className="col-xs-7 form-container">
+                <Form getWeather={this.getWeather} />
+                <Weather
+                  temperature={this.state.temperature}
+                  city={this.state.city}
+                  country={this.state.country}
+                  humidity={this.state.humidity}
+                  description={this.state.description}
+                  icon={this.state.icon}
+                  error={this.state.error}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

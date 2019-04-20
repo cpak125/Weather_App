@@ -1,7 +1,8 @@
 # Weather App
 
-## 
 Developed a simple weather app. This web app allows users to view the weather conditions of a city. Users can search for a city's weather by entering the city's name and the country or by zip code, if it's a city located in the US. All weather information such as location, temperature, humidity, and conditions is being pulled from OpenWeatherMap's API.
+
+![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
 
 ## Deployed App
 https://cpak-weather-app.herokuapp.com/

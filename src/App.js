@@ -9,7 +9,7 @@ const API_KEY = `${process.env.REACT_APP_WEATHER_API_KEY}`
 class App extends Component {
   state = {
     temperature: undefined,
-    city: undefined,
+    cityZip: undefined,
     country: undefined,
     humidity: undefined,
     description: undefined,
@@ -19,12 +19,17 @@ class App extends Component {
   getWeather = async (e) => {
     e.preventDefault()
 
-    const city = e.target.elements.city.value
+    const city = e.target.elements.cityZip.value
     const country = e.target.elements.country.value
 
     const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=imperial`)
+    const api_call_zip = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${city}&appid=${API_KEY}&units=imperial`)
+
     const response = await api_call.json()
-    console.log(response)
+    const responseZip = await api_call_zip.json()
+
+
+    console.log(responseZip)
 
     if (city && country) {
       this.setState({
@@ -34,6 +39,16 @@ class App extends Component {
         humidity: response.main.humidity + "%",
         description: response.weather[0].description,
         icon: response.weather[0].icon,
+        error: ""
+      })
+    } else if (city) {
+      this.setState({
+        temperature: Math.ceil(responseZip.main.temp) + "°F",
+        city: responseZip.name,
+        country: responseZip.sys.country,
+        humidity: responseZip.main.humidity + "%",
+        description: responseZip.weather[0].description,
+        icon: responseZip.weather[0].icon,
         error: ""
       })
     } else {
@@ -47,13 +62,13 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="main">
+        <div>
           <div className="container">
             <div className="row">
-              <div className="col-xs-5 title-container">
+              <div className="col-md-5 title-container">
                 <Titles />
               </div>
-              <div className="col-xs-7 form-container">
+              <div className="col-md-7 form-container">
                 <Form getWeather={this.getWeather} />
                 <Weather
                   temperature={this.state.temperature}

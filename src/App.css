@@ -36,23 +36,6 @@ body {
   color: rgb(11, 3, 82);
 }
 
-@media (max-width : 600px){
-  .title-container {
-    height: 39vh;
-    background: url("img/clouds.gif") no-repeat;
-    background-attachment: inherit;
-    background-position: center top;
-    background-size: cover;
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  form {
-    display:flex;
-  }
-}
-
 .title-container__title {
   font-size:70px;
   letter-spacing: 2px;
@@ -147,4 +130,21 @@ button:active {
   font-size: 20px;
   letter-spacing: 1px;
   font-weight: 200;
+}
+
+@media (max-width : 600px){
+  .title-container {
+    height: 39vh;
+    background: url("img/clouds.gif") no-repeat;
+    background-attachment: inherit;
+    background-position: center top;
+    background-size: cover;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  form {
+    display:flex;
+  }
 }

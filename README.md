@@ -13,4 +13,9 @@ https://cpak-weather-app.herokuapp.com/
 3. React
 4. OpenWeatherApp API
 
+## Things I learned
+1. Fetch API - fetch() method
+2. Class based vs. Stateless components
+3. Setting up Boostrap grid system so that columns stack on smaller devices
+
 

@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import './App.css'
+import React, {Component} from 'react';
+import './App.css';
 import Titles from './components/Titles';
 import Form from './components/Form';
 import Weather from './components/Weather';
 
-const API_KEY = `${process.env.REACT_APP_WEATHER_API_KEY}`
+const API_KEY = `${process.env.REACT_APP_WEATHER_API_KEY}`;
 
 class App extends Component {
   state = {
@@ -14,22 +14,19 @@ class App extends Component {
     humidity: undefined,
     description: undefined,
     error: undefined
-  }
+  };
 
   getWeather = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const city = e.target.elements.cityZip.value
-    const country = e.target.elements.country.value
+    const city = e.target.elements.cityZip.value;
+    const country = e.target.elements.country.value;
 
-    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=imperial`)
-    const api_call_zip = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${city}&appid=${API_KEY}&units=imperial`)
+    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=imperial`);
+    const api_call_zip = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${city},us&appid=${API_KEY}&units=imperial`);
 
-    const response = await api_call.json()
-    const responseZip = await api_call_zip.json()
-
-
-    console.log(responseZip)
+    const response = await api_call.json();
+    const responseZip = await api_call_zip.json();
 
     if (city && country) {
       this.setState({
@@ -40,7 +37,7 @@ class App extends Component {
         description: response.weather[0].description,
         icon: response.weather[0].icon,
         error: ""
-      })
+      });
     } else if (city) {
       this.setState({
         temperature: Math.ceil(responseZip.main.temp) + "°F",
@@ -50,14 +47,14 @@ class App extends Component {
         description: responseZip.weather[0].description,
         icon: responseZip.weather[0].icon,
         error: ""
-      })
+      });
     } else {
       this.setState({
         error: "Please enter the values..."
-      })
+      });
     }
 
-  }
+  };
 
   render() {
     return (
@@ -84,8 +81,8 @@ class App extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;

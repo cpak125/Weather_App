@@ -22,8 +22,10 @@ class App extends Component {
     const city = e.target.elements.cityZip.value;
     const country = e.target.elements.country.value;
 
-    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=imperial`);
-    const api_call_zip = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${city},us&appid=${API_KEY}&units=imperial`);
+    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${REACT_APP_WEATHER_API_KEY
+      }&units=imperial`);
+    const api_call_zip = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${city},us&appid=${REACT_APP_WEATHER_API_KEY
+      }&units=imperial`);
 
     const response = await api_call.json();
     const responseZip = await api_call_zip.json();

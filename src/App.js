@@ -19,18 +19,18 @@ class App extends Component {
   getWeather = async (e) => {
     e.preventDefault();
 
-    const city = e.target.elements.cityZip.value;
-    const country = e.target.elements.country.value;
+    const zip = e.target.elements.zip.value;
+    const city = e.target.elements.city.value;
 
-    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY
+    const api_call_city = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY
       }&units=imperial`);
-    const api_call_zip = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${city},us&appid=${API_KEY
+    const api_call_zip = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${API_KEY
       }&units=imperial`);
 
-    const response = await api_call.json();
+    const response = await api_call_city.json();
     const responseZip = await api_call_zip.json();
 
-    if (city && country) {
+    if (city) {
       this.setState({
         temperature: Math.ceil(response.main.temp) + "°F",
         city: response.name,
@@ -40,7 +40,7 @@ class App extends Component {
         icon: response.weather[0].icon,
         error: ""
       });
-    } else if (city) {
+    } else if (zip) {
       this.setState({
         temperature: Math.ceil(responseZip.main.temp) + "°F",
         city: responseZip.name,
